@@ -86,12 +86,16 @@ FETCH NEXT 1 ROW ONLY
 FROM UK_Stabbings_Ethnicity$
 WHERE Ethnicity = 'Asian or Asian British' 
 GROUP BY Episodes_Per_Ethnicity, Ethnicity, Year, Month, Monthly_Episodes, Annual_Episodes)
+
 UNION
+
 (SELECT TOP 1 *
 FROM UK_Stabbings_Ethnicity$
 WHERE Ethnicity = 'Black or Black British' 
 GROUP BY Episodes_Per_Ethnicity, Ethnicity, Year, Month, Monthly_Episodes, Annual_Episodes)
+
 UNION
+
 (SELECT TOP 1 *
 FROM UK_Stabbings_Ethnicity$
 WHERE Ethnicity = 'White' 
@@ -109,7 +113,9 @@ GROUP BY Episodes_Per_Ethnicity, Ethnicity, Year, Month, Monthly_Episodes, Annua
 ORDER BY Episodes_Per_Ethnicity
 OFFSET 119 ROWS
 FETCH NEXT 1 ROW ONLY)
+	
 UNION
+	
 (SELECT *
 FROM UK_Stabbings_Ethnicity$
 WHERE Ethnicity = 'Black or Black British' 
@@ -117,7 +123,9 @@ GROUP BY Episodes_Per_Ethnicity, Ethnicity, Year, Month, Monthly_Episodes, Annua
 ORDER BY Episodes_Per_Ethnicity
 OFFSET 119 ROWS
 FETCH NEXT 1 ROW ONLY)
+	
 UNION
+	
 (SELECT *
 FROM UK_Stabbings_Ethnicity$
 WHERE Ethnicity = 'White' 
@@ -161,17 +169,22 @@ WITH Ethnic_Min AS (
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'Asian or Asian British' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
+	
 UNION
+	
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'Black or Black British' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
+	
 UNION
+	
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'White' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
 ) 
+
 SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, MIN(Episodes_Per_Ethnicity) Min_Stabbings, Monthly_Episodes, Annual_Episodes
 FROM Ethnic_Min
 GROUP BY Year, Month, Monthly_Episodes, Annual_Episodes
@@ -186,17 +199,22 @@ WITH Ethnic_Max AS (
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'Asian or Asian British' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
+	
 UNION
+	
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'Black or Black British' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
+	
 UNION
+	
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes
 FROM UK_Stabbings_Ethnicity$
 WHERE Year IS NOT NULL  AND Ethnicity = 'White' 
 GROUP BY Year, Month, Ethnicity, Episodes_Per_Ethnicity, Monthly_Episodes, Annual_Episodes)
 ) 
+
 SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER By Month) Rows, Year, Month, MAX(Episodes_Per_Ethnicity) Max_Stabbings, Monthly_Episodes, Annual_Episodes
 FROM Ethnic_Max
 GROUP BY Year, Month, Monthly_Episodes, Annual_Episodes
