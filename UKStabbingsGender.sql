@@ -5,124 +5,176 @@ FROM UK_Stabbings_Gender$
 
 
 
--- 2) FEMALE ROLL_COUNT COUNTS FOR THE DECADE PERIOD
+-- 2) FEMALE EPISODES ROLL_COUNT FOR THE DECADE PERIOD
+
+SELECT ROW_NUMBER () OVER (PARTITION BY Month ORDER BY Month) Rows, Year, Month, Gender, Episodes_Per_Gender,
+SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
+FROM UK_Stabbings_Gender$
+WHERE GENDER = 'Female' AND Year BETWEEN '2012 - 2013' AND '2021 - 2022'
+GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
+-- OR / ALTERNATIVELY
 
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year  LIKE '%2013' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2014' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2015' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2016' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2017' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2018' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2019' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2020' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2021' 
 GROUP BY Year, Month, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Female' AND Year LIKE '%2022'
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
 
--- 3) MALE ROLL_COUNT COUNTS FOR THE DECADE PERIOD
+-- 3) MALE EPISODES ROLL_COUNT FOR THE DECADE PERIOD
+
+SELECT ROW_NUMBER () OVER (PARTITION BY Month ORDER BY Month) Rows, Year, Month, Gender, Episodes_Per_Gender,
+SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
+FROM UK_Stabbings_Gender$
+WHERE GENDER = 'Male' AND Year BETWEEN '2012 - 2013' AND '2021 - 2022'
+GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
+-- OR / ALTERNATIVELY
 
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year  LIKE '%2013' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2014' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2015' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2016' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2017' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2018' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2019' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2020' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
 WHERE GENDER = 'Male' AND Year LIKE '%2021' 
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 UNION
+
 SELECT Year, Month, ROW_NUMBER () OVER (ORDER BY Month) Rows, Gender, Episodes_Per_Gender, 
 SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$ 
@@ -131,7 +183,7 @@ GROUP BY Year, Month, Gender, Episodes_Per_Gender
 
 
 
--- 4) ANNUAL Episodes FOR DISTINCT YEAR (2012 - 2013) & GENDER (FEMALE)
+-- 4) ANNUAL EPISODES FOR DISTINCT YEAR (2012 - 2013) & GENDER (FEMALE)
 
 WITH Female_Annuals AS(
 (SELECT Year, Month, Gender, Episodes_Per_Gender--, SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Annuals
@@ -145,7 +197,7 @@ ORDER BY Year
 
 
 
--- 5) ANNUAL Episodes FOR DISTINCT YEAR (2012 - 2013) & GENDER (MALE)
+-- 5) ANNUAL EPISODES FOR DISTINCT YEAR (2012 - 2013) & GENDER (MALE)
 
 WITH Male_Annuals AS(
 (SELECT Year, Month, Gender, Episodes_Per_Gender--, SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Annuals
@@ -172,7 +224,7 @@ WHERE Gender = 'Male')
 --) SELECT * FROM Sums
 
 
--- 7) OR / ALTERNATIVELY
+-- OR / ALTERNATIVELY
 
 
 WITH Sums AS (
@@ -194,14 +246,14 @@ GROUP BY Gender
 
 
 
--- 8) FEMALE TOTAL STABBINGS FOR THE DECADE PERIOD
+-- 7) FEMALE TOTAL STABBINGS FOR THE DECADE PERIOD
 
 SELECT SUM(Episodes_Per_Gender) Female_Sum
 FROM UK_Stabbings_Gender$
 WHERE Gender = 'Female'
 
 
--- 9) OR / ALTERNATIVELY
+-- OR / ALTERNATIVELY
 
 WITH Female_Totals AS (
 SELECT Year, Month, Gender, Episodes_Per_Gender, SUM(Episodes_Per_Gender) Gen_Sum
@@ -214,14 +266,14 @@ GROUP BY Gender
 
 
 
--- 10) MALE TOTAL STABBINGS FOR THE DECADE PERIOD
+-- 8) MALE TOTAL STABBINGS FOR THE DECADE PERIOD
 
 SELECT SUM(Episodes_Per_Gender) Male_Sum
 FROM UK_Stabbings_Gender$
 WHERE Gender = 'Male'
 
 
--- 11) OR / ALTERNATIVE
+-- OR / ALTERNATIVE
 
 WITH Male_Totals AS (
 SELECT Year, Month, Gender, Episodes_Per_Gender, SUM(Episodes_Per_Gender) Gen_Sum
@@ -234,7 +286,7 @@ GROUP BY Gender
 
 
 
--- 12) FE/MALE MONTHLY PERCENTAGES
+-- 9) FE/MALE MONTHLY PERCENTAGES
 
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER BY Year) Rows, Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes, 
 ROUND((Episodes_Per_Gender/Monthly_Episodes)*100, 2) Monthly_Percentage 
@@ -244,15 +296,15 @@ GROUP BY  Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes, Annual_Epi
 UNION
 (SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER BY Year) Rows, Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes, 
 ROUND((Episodes_Per_Gender/Monthly_Episodes)*100, 2) Monthly_Percentage  
-FROM UK_Stabbings_Gender$                                                                                                                  --ROUND((SUM(Episodes_Per_Gender)/Annual_Episodes)*100, 2) Annual_Percentage 
-WHERE Gender = 'MALE'                                                                                                                    -- ROUND((Sum_Fem_Episodes/Annual_Episodes)*100,2) Ann_Per
+FROM UK_Stabbings_Gender$
+WHERE Gender = 'MALE'                                                                                                  
 GROUP BY  Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes)
 ORDER BY Year,Month 
 
 
 
 
--- 13) FEMALE ANNUAL PERCENTAGE
+-- 10) FEMALE ANNUAL PERCENTAGE
 
 WITH Females AS ((
 SELECT Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes, Annual_Episodes, SUM(Monthly_Episodes - Episodes_Per_Gender) Female
@@ -266,7 +318,7 @@ ORDER BY Year
 
 
 
--- 14) MALE ANNUAL PERCENTAGES 
+-- 11) MALE ANNUAL PERCENTAGES 
 
 WITH Males AS ((
 SELECT Year, Month, Gender, Episodes_Per_Gender, Monthly_Episodes, Annual_Episodes, SUM(Monthly_Episodes - Episodes_Per_Gender) Male
