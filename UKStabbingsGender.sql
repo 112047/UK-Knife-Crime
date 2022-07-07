@@ -7,11 +7,12 @@ FROM UK_Stabbings_Gender$
 
 -- 2) FEMALE EPISODES ROLL_COUNT FOR THE DECADE PERIOD
 
-SELECT ROW_NUMBER () OVER (PARTITION BY Month ORDER BY Month) Rows, Year, Month, Gender, Episodes_Per_Gender,
-SUM(Episodes_Per_Gender) OVER (ORDER BY Month) Roll_Count
+SELECT ROW_NUMBER () OVER (PARTITION BY Year ORDER BY Month) Rows, Year, Month, Gender, Episodes_Per_Gender,
+SUM(Episodes_Per_Gender) OVER (PARTITION BY Year ORDER BY Month) Roll_Count
 FROM UK_Stabbings_Gender$
 WHERE GENDER = 'Female' AND Year BETWEEN '2012 - 2013' AND '2021 - 2022'
 GROUP BY Year, Month, Gender, Episodes_Per_Gender
+
 
 -- OR / ALTERNATIVELY
 
